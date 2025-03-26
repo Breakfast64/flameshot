@@ -1324,7 +1324,9 @@ void CaptureWidget::onMoveCaptureToolDown(int captureToolIndex)
 void CaptureWidget::selectAll()
 {
     m_selection->show();
-    m_selection->setGeometry(rect());
+    QScreen* screen = qApp->screenAt(QCursor::pos());
+    QRect geometry = screen->geometry();
+    m_selection->setGeometry(geometry);
     emit m_selection->geometrySettled();
     m_buttonHandler->show();
     updateSelectionState();
